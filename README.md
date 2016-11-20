@@ -14,10 +14,10 @@ from query_service import perform_lookup_query, paginate_list
 def index(request):
   params =  request.GET
   objects = perform_lookup_query(model = Post, params = params)
-  objects_paginated = paginate_list(objects, params)
+  pagged_objects = paginate_list(objects, params)
   
   context = {
-    'post_list': objects,
+    'post_list': pagged_objects,
   }
   
   return render(request, 'index.html', context)
