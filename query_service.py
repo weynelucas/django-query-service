@@ -61,7 +61,8 @@ def perform_lookup_query(Model, params):
 
     for field in fields:
         if type(field) in [CharField, TextField]:
-            # Unaccent is for postgres databases (Remove if you use others databases)
+            # Unaccent is for PostgreSQL databases (remove if you use others)
+            # https://docs.djangoproject.com/pt-br/1.10/ref/contrib/postgres/lookups/#unaccent
             new_params.update({field.name + '__unaccent__icontains': query})
         else:
             new_params.update({field.name + '__icontains': query})
